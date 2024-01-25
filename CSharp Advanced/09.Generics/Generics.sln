@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. Box of T", "1. Box of T\1. Box of T.csproj", "{C98DE567-F8F2-467F-A3A2-4EDF2A339D04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. Generic Array Creator", "2. Generic Array Creator\2. Generic Array Creator.csproj", "{C5981DCC-D528-4A53-BAA1-4BB26F2014B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C98DE567-F8F2-467F-A3A2-4EDF2A339D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98DE567-F8F2-467F-A3A2-4EDF2A339D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98DE567-F8F2-467F-A3A2-4EDF2A339D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98DE567-F8F2-467F-A3A2-4EDF2A339D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5981DCC-D528-4A53-BAA1-4BB26F2014B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5981DCC-D528-4A53-BAA1-4BB26F2014B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5981DCC-D528-4A53-BAA1-4BB26F2014B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5981DCC-D528-4A53-BAA1-4BB26F2014B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA970E93-7458-4993-8DD4-4BCC8176E9CD}
+	EndGlobalSection
+EndGlobal

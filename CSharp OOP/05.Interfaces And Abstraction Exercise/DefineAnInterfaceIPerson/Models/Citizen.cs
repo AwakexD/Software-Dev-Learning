@@ -1,0 +1,19 @@
+﻿using PersonInfo.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace PersonInfo.Models
+{
+    public class Citizen : IPerson
+    {
+        public string Name { get;  set; }
+        public int Age { get;  set; }
+
+        public Citizen(string name, int age)
+        {
+            this.Name = name;
+            this.Age = age;
+        }
+    }
+}

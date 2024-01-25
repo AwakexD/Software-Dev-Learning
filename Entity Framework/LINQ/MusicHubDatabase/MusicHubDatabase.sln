@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicHub", "MusicHub\MusicHub.csproj", "{DCB9A7DA-0EB2-4DB2-8027-220FB41C41CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicHub.Data", "MusicHub.Data\MusicHub.Data.csproj", "{69718164-6B50-4065-93E0-E5271C84D640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicHub.Data.Models", "MusicHub.Data.Models\MusicHub.Data.Models.csproj", "{5067DB1D-4515-4867-9C70-6C571415A616}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCB9A7DA-0EB2-4DB2-8027-220FB41C41CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB9A7DA-0EB2-4DB2-8027-220FB41C41CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB9A7DA-0EB2-4DB2-8027-220FB41C41CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB9A7DA-0EB2-4DB2-8027-220FB41C41CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69718164-6B50-4065-93E0-E5271C84D640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69718164-6B50-4065-93E0-E5271C84D640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69718164-6B50-4065-93E0-E5271C84D640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69718164-6B50-4065-93E0-E5271C84D640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5067DB1D-4515-4867-9C70-6C571415A616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5067DB1D-4515-4867-9C70-6C571415A616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5067DB1D-4515-4867-9C70-6C571415A616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5067DB1D-4515-4867-9C70-6C571415A616}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33ECC16D-D7A9-43BD-BE82-C7FFC2951418}
+	EndGlobalSection
+EndGlobal
