@@ -9,33 +9,39 @@ namespace PrintPrimeCount
 
         static void Main(string[] args)
         {
-            Stopwatch sw = Stopwatch.StartNew();
-            Thread thread = new Thread(() => PrintPrimeCount(1, 2_500_000));
-            thread.Name = "1";
-            thread.Start();
-            Thread thread2 = new Thread(() => PrintPrimeCount(2_500_001, 5_000_000));
-            thread2.Start();
-            thread2.Name = "2";
-            Thread thread3 = new Thread(() => PrintPrimeCount(5_000_001, 7_500_000));
-            thread3.Start();
-            thread3.Name = "3";
-            Thread thread4 = new Thread(() => PrintPrimeCount(7_500_001, 10_000_000));
-            thread4.Start();
-            thread4.Name = "4";
-
-            thread.Join();
-            thread2.Join();
-            thread3.Join();
-            thread4.Join();
-
-            Console.WriteLine(Count);
-            Console.WriteLine(sw.Elapsed);
-
-            while (true)
+            for (int i = 0; i < 30; i++)
             {
-                string input = Console.ReadLine();
-                Console.WriteLine(input.ToUpper());
+                DownalodAsync($"https://vicove.com/vic-{i}");
             }
+
+
+            //Stopwatch sw = Stopwatch.StartNew();
+            //Thread thread = new Thread(() => PrintPrimeCount(1, 2_500_000));
+            //thread.Name = "1";
+            //thread.Start();
+            //Thread thread2 = new Thread(() => PrintPrimeCount(2_500_001, 5_000_000));
+            //thread2.Start();
+            //thread2.Name = "2";
+
+            //thread.Join();
+            //thread2.Join();
+
+            //while (true)
+            //{
+            //    string input = Console.ReadLine();
+            //    Console.WriteLine(input.ToUpper());
+            //}
+
+            //Console.WriteLine(Count);
+            //Console.WriteLine(sw.Elapsed);
+        }
+
+        static async Task DownalodAsync(string url)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetAsync(url);
+            var stringBytes = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(stringBytes.Length);
         }
 
         static void PrintPrimeCount(int min, int max )
