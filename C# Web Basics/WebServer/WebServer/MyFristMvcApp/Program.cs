@@ -4,14 +4,14 @@ namespace MyFristMvcApp
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             HttpServer server = new HttpServer();
-            server.Start(80);
+            //server.AddRoute("/", HomePage);
+            //server.AddRoute("/login", Login);
+            //server.AddRoute("/about", About);
 
-            server.AddRoute("/", HomePage);
-            server.AddRoute("/login", Login);
-            server.AddRoute("/about", About);
+            await server.StartAsync(80);
         }
 
         static HttpResponse HomePage(HttpRequest request)
