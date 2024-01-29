@@ -22,7 +22,7 @@ namespace WebServer.HTTP
             using NetworkStream stream = tcpClient.GetStream();
 
             int position = 0;
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[HttpConstants.BufferSize];
             List<byte> data = new List<byte>();
             
             // Reading buffer from the stream
@@ -55,7 +55,22 @@ namespace WebServer.HTTP
 
             Console.WriteLine(requestAsString);
 
+            string response = $"<h1>Welcome {DateTime.UtcNow}</h1>";
+            byte[] responseBodyBytes = Encoding.UTF8.GetBytes(response);
+
+            string responseHttp = $"HTTP/1.1 200 OK" + HttpConstants.NewLine
+                                                     + "Server: WebServer 1.0" + HttpConstants.NewLine
+                                                     + "Content-Type: text/html" + HttpConstants.NewLine
+                                                     + $"Content-Length: {responseBodyBytes.Length}" + HttpConstants.NewLine
+                                                     + HttpConstants.NewLine;
+            byte[] responseHeadersBytes = Encoding.UTF8.GetBytes(response);
+
+            await stream.WriteAsync(responseHeadersBytes, 0, responseHeadersBytes.Length);
+            await stream.WriteAsync(responseBodyBytes, 0, responseBodyBytes.Length);
+
+            tcpClient.Close();
         }
+
 
         public void AddRoute(string path, Func<HttpRequest, HttpResponse> action)
         {
