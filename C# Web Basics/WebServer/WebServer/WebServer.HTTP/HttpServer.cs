@@ -51,10 +51,11 @@ namespace WebServer.HTTP
             }
 
             // Encoding byte[] => string
-            string requestAsString = Encoding.UTF8.GetString(data.ToArray());
-
+            var requestAsString = Encoding.UTF8.GetString(data.ToArray());
+            var request = new HttpRequest(requestAsString);
             Console.WriteLine(requestAsString);
 
+            // Response
             string response = $"<h1>Welcome {DateTime.UtcNow}</h1>";
             byte[] responseBodyBytes = Encoding.UTF8.GetBytes(response);
 
@@ -63,7 +64,7 @@ namespace WebServer.HTTP
                                                      + "Content-Type: text/html" + HttpConstants.NewLine
                                                      + $"Content-Length: {responseBodyBytes.Length}" + HttpConstants.NewLine
                                                      + HttpConstants.NewLine;
-            byte[] responseHeadersBytes = Encoding.UTF8.GetBytes(response);
+            byte[] responseHeadersBytes = Encoding.UTF8.GetBytes(responseHttp);
 
             await stream.WriteAsync(responseHeadersBytes, 0, responseHeadersBytes.Length);
             await stream.WriteAsync(responseBodyBytes, 0, responseBodyBytes.Length);
