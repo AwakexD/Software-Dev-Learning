@@ -2,7 +2,12 @@
 {
     public class Cookie
     {
-        //sid=ja63ahjdsa1
+        public Cookie(string name, string value)
+        {
+            this.Name = name;
+            this.Value = value;
+        }
+
         public Cookie(string cookieLine)
         {
             var cookieParts = cookieLine.Split(new char[] { '=' }, 2);

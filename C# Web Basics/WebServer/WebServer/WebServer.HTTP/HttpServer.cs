@@ -56,22 +56,21 @@ namespace WebServer.HTTP
                 var requestAsString = Encoding.UTF8.GetString(data.ToArray());
                 var request = new HttpRequest(requestAsString);
                 Console.WriteLine($"{request.Method} {request.Path} => " +
-                                  $"\nHeaders Count: {request.Headers.Count} " +
+                                  $"\nHeaders Count:{request.Headers.Count} " +
                                   $"\nCookies:\n{string.Join("\n", request.Cookies.Select(x => x))}\n");
 
                 // Response
-                string response = $"<h1>Welcome {DateTime.UtcNow}</h1>";
-                byte[] responseBodyBytes = Encoding.UTF8.GetBytes(response);
+                string responseHtml = $"<h1>Welcome {DateTime.UtcNow}</h1>";
+                byte[] responseBodyBytes = Encoding.UTF8.GetBytes(responseHtml);
 
-                string responseHttp = $"HTTP/1.1 200 OK" + HttpConstants.NewLine
-                                                         + "Server: WebServer 1.0" + HttpConstants.NewLine
-                                                         + "Content-Type: text/html" + HttpConstants.NewLine
-                                                         + $"Content-Length: {responseBodyBytes.Length}" + HttpConstants.NewLine
-                                                         + HttpConstants.NewLine;
-                byte[] responseHeadersBytes = Encoding.UTF8.GetBytes(responseHttp);
+                HttpResponse response = new HttpResponse("text/html", responseBodyBytes);
+                response.Headers.Add(new Header("Server", "WebServer 1.1"));
+                response.Cookies.Add(new ResponseCookie("sid", Guid.NewGuid().ToString()) {HttpOnly = true, MaxAge = 5 * 24 * 60 * 60} );
 
-                await stream.WriteAsync(responseHeadersBytes, 0, responseHeadersBytes.Length);
-                await stream.WriteAsync(responseBodyBytes, 0, responseBodyBytes.Length);
+                var responseBytes = Encoding.UTF8.GetBytes(response.ToString());
+
+                await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
+                await stream.WriteAsync(response.Body, 0, response.Body.Length);
 
                 tcpClient.Close();
             }
