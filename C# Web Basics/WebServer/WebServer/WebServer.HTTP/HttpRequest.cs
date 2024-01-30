@@ -14,7 +14,7 @@ namespace WebServer.HTTP
 
             var headerLine = lines[0];
             var headerLineParts = headerLine.Split(' ');
-            this.Method = (HttpMethod)Enum.Parse(typeof(HttpMethod), headerLineParts[0]);
+            this.Method = (HttpMethod)Enum.Parse(typeof(HttpMethod), headerLineParts[0], ignoreCase:true);
             this.Path = headerLineParts[1];
 
             int lineIndex = 1;
@@ -41,15 +41,26 @@ namespace WebServer.HTTP
                 }
             }
 
+            if (this.Headers.Any(x => x.Name == HttpConstants.RequestCookies))
+            {
+                var cookiesAsString = this.Headers.FirstOrDefault(x => x.Name == HttpConstants.RequestCookies).Value;
+
+                var cookies = cookiesAsString.Split(new string[] { "; " },2, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var cookieStr in cookies)
+                {
+                    this.Cookies.Add(new Cookie(cookieStr));
+                }
+            }
+
             this.Body = bodyBuilder.ToString();
         }
         public string Path { get; set; }
 
         public HttpMethod Method { get; set; }
 
-        public List<Header> Headers { get; set; }
+        public ICollection<Header> Headers { get; set; }
 
-        public List<Cookie> Cookies { get; set; }
+        public ICollection<Cookie> Cookies { get; set; }
 
         public string Body { get; set; }
     }
