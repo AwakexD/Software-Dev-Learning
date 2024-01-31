@@ -8,12 +8,12 @@ namespace MyFristMvcApp.Controllers
     {
         public HttpResponse Index(HttpRequest request)
         {
-            return this.View("Views/Home/Index.html");
+            return this.View("Index.html");
         }
 
         public HttpResponse About(HttpRequest request)
         {
-            return this.View("Views/Home/About.html");
+            return this.View("About.html");
         }
     }
 }
