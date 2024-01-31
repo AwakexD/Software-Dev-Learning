@@ -6,12 +6,12 @@ namespace MyFristMvcApp.Controllers
 {
     public class HomeController : Controller
     {
-        HttpResponse Index(HttpRequest request)
+        public HttpResponse Index(HttpRequest request)
         {
             return this.View("Views/Home/Index.html");
         }
 
-        HttpResponse About(HttpRequest request)
+        public HttpResponse About(HttpRequest request)
         {
             return this.View("Views/Home/About.html");
         }

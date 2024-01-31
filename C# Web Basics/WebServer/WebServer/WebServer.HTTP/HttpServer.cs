@@ -6,6 +6,13 @@ namespace WebServer.HTTP
 {
     public class HttpServer : IHttpServer
     {
+        private List<Route> routeTable;
+
+        public HttpServer(List<Route> table)
+        {
+            this.routeTable = table;
+        }
+
         public async Task StartAsync(int port)
         {
             TcpListener tcpListener = new TcpListener(IPAddress.Loopback, port);
@@ -60,24 +67,46 @@ namespace WebServer.HTTP
                                   $"\nCookies:\n{string.Join("\n", request.Cookies.Select(x => x))}\n");
 
                 // Response
-                string responseHtml = $"<h1>Welcome {DateTime.UtcNow}</h1>";
-                byte[] responseBodyBytes = Encoding.UTF8.GetBytes(responseHtml);
+                HttpResponse response;
+                var route = this.routeTable.FirstOrDefault(
+                    x => x.Path == request.Path
+                         && x.Method == request.Method);
+                
+                if (route != null)
+                {
+                    response = route.Action(request);
+                }
+                else
+                {
+                    // Not Found 404
+                    response = new HttpResponse("text/html", new byte[0], HttpStatusCode.NotFound);
+                }
 
-                HttpResponse response = new HttpResponse("text/html", responseBodyBytes);
-                response.Headers.Add(new Header("Server", "WebServer 1.1"));
-                response.Cookies.Add(new ResponseCookie("sid", Guid.NewGuid().ToString()) {HttpOnly = true, MaxAge = 5 * 24 * 60 * 60} );
+                response.Headers.Add(new Header("X-Server", "MyWebServer 1.1"));
 
-                var responseBytes = Encoding.UTF8.GetBytes(response.ToString());
+                var sessionCookie = request.Cookies.FirstOrDefault(x => x.Name == HttpConstants.SessionCookieName);
+                if (sessionCookie != null)
+                {
+                    var responseSessionCookie = new ResponseCookie(sessionCookie.Name, sessionCookie.Value);
+                    responseSessionCookie.Path = "/";
+                    response.Cookies.Add(responseSessionCookie);
+                }
 
-                await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
-                await stream.WriteAsync(response.Body, 0, response.Body.Length);
+                var responseHeaderBytes = Encoding.UTF8.GetBytes(response.ToString());
+                await stream.WriteAsync(responseHeaderBytes, 0, responseHeaderBytes.Length);
 
-                tcpClient.Close();
+                if (response.Body != null)
+                {
+                    await stream.WriteAsync(response.Body, 0, response.Body.Length);
+                }
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            tcpClient.Close();
         }
 
 

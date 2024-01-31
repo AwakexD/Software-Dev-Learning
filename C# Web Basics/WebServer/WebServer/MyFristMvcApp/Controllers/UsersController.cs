@@ -6,11 +6,11 @@ namespace MyFristMvcApp.Controllers
 {
     public class UsersController : Controller
     {
-        HttpResponse Login(HttpRequest request)
+        public HttpResponse Login(HttpRequest request)
         {
             return this.View("Views/Users/Login.html");
         }
-        HttpResponse Register(HttpRequest request)
+        public HttpResponse Register(HttpRequest request)
         {
             return this.View("Views/Users/Register.html");
         }

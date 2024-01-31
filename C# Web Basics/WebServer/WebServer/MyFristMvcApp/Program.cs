@@ -1,4 +1,6 @@
-﻿using WebServer.HTTP;
+﻿using MyFristMvcApp.Controllers;
+using WebServer.HTTP;
+using HttpMethod = WebServer.HTTP.HttpMethod;
 
 namespace MyFristMvcApp
 {
@@ -6,12 +8,15 @@ namespace MyFristMvcApp
     {
         static async Task Main(string[] args)
         {
-            HttpServer server = new HttpServer();
-            //server.AddRoute("/", HomePage);
-            //server.AddRoute("/login", Login);
-            //server.AddRoute("/about", About);
+            List<Route> routes = new List<Route>();
+            routes.Add(new Route("/", HttpMethod.Get, new HomeController().Index));
+            routes.Add(new Route("/about", HttpMethod.Get, new HomeController().About));
+            routes.Add(new Route("/users/login", HttpMethod.Get, new UsersController().Login));
+            routes.Add(new Route("/users/register", HttpMethod.Get, new UsersController().Register));
 
+            HttpServer server = new HttpServer(routes);
             await server.StartAsync(80);
+
         }
     }
 }
