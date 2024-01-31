@@ -8,20 +8,11 @@ namespace MyFristMvcApp.Controllers
     {
         HttpResponse Login(HttpRequest request)
         {
-            var responseHtml = "<h1>Login</h1>";
-            var responseBodyBytes = Encoding.UTF8.GetBytes(responseHtml);
-            var response = new HttpResponse("text/html", responseBodyBytes);
-
-            return response;
+            return this.View("Views/Users/Login.html");
         }
-
         HttpResponse Register(HttpRequest request)
         {
-            var responseHtml = "<h1>Register</h1>";
-            var responseBodyBytes = Encoding.UTF8.GetBytes(responseHtml);
-            var response = new HttpResponse("text/html", responseBodyBytes);
-
-            return response;
+            return this.View("Views/Users/Register.html");
         }
     }
 }
