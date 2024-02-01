@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFristMvcApp", "MyFristMvc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git", "Git\Git.csproj", "{82917770-16CF-4375-8AEB-6C4200F0DEB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.MvcFramework.Tests", "WebServer.MvcFramework.Tests\WebServer.MvcFramework.Tests.csproj", "{48A7D5EA-AEDC-436F-A5B3-5C2650FA2F59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{82917770-16CF-4375-8AEB-6C4200F0DEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82917770-16CF-4375-8AEB-6C4200F0DEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82917770-16CF-4375-8AEB-6C4200F0DEB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48A7D5EA-AEDC-436F-A5B3-5C2650FA2F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A7D5EA-AEDC-436F-A5B3-5C2650FA2F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A7D5EA-AEDC-436F-A5B3-5C2650FA2F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A7D5EA-AEDC-436F-A5B3-5C2650FA2F59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
