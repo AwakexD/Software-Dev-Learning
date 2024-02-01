@@ -69,8 +69,7 @@ namespace WebServer.HTTP
                 // Response
                 HttpResponse response;
                 var route = this.routeTable.FirstOrDefault(
-                    x => x.Path == request.Path
-                         && x.Method == request.Method);
+                    x => string.Compare(x.Path, request.Path, true) == 0 && x.Method == request.Method);
                 
                 if (route != null)
                 {

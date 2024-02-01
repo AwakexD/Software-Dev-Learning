@@ -7,10 +7,13 @@ namespace WebServer.MvcFramework
     {
         public HttpResponse View(string viewPath)
         {
-            var responseHtml = System.IO.File.ReadAllText("Views/" + this.GetType().Name.Replace("Controller", string.Empty) + "/" + viewPath);
-            var responseBodyBytes = Encoding.UTF8.GetBytes(responseHtml);
-            var response = new HttpResponse("text/html", responseBodyBytes);
+            var layout = System.IO.File.ReadAllText("Views/Shared/_Layout.html");
 
+            var viewContent = System.IO.File.ReadAllText("Views/" + this.GetType().Name.Replace("Controller", string.Empty) + "/" + viewPath);
+            var responseHtml = layout.Replace("@RenderBody", viewContent);
+            var responseBodyBytes = Encoding.UTF8.GetBytes(responseHtml);
+            
+            var response = new HttpResponse("text/html", responseBodyBytes);
             return response;
         }
 
