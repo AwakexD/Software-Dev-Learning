@@ -12,7 +12,7 @@ namespace Git.Data
             Repositories = new HashSet<Repository>();
             Commits = new HashSet<Commit>();
         }
-
+        [Key]
         public string Id { get; set; }
 
         [Required]

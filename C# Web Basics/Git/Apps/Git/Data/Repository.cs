@@ -10,10 +10,10 @@ namespace Git.Data
         public Repository()
         {
             Id = Guid.NewGuid().ToString();
-            CreatedOn = DateTime.Now.ToUniversalTime();
             Commits = new HashSet<Commit>();
         }
 
+        [Key]
         public string Id { get; set; }
 
         [Required]
@@ -27,7 +27,7 @@ namespace Git.Data
         public bool IsPublic { get; set; }
 
         public string OwnerId { get; set; }
-        public User Owner { get; set; }
+        public virtual User Owner { get; set; }
 
         public virtual ICollection<Commit> Commits { get; set; }
 

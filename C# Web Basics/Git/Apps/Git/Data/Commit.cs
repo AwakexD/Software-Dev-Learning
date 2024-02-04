@@ -8,9 +8,9 @@ namespace Git.Data
         public Commit()
         {
             Id = Guid.NewGuid().ToString();
-            CreatedOn = DateTime.Now.ToUniversalTime();
         }
 
+        [Key]
         public string Id { get; set; }
 
         [Required]
@@ -20,9 +20,9 @@ namespace Git.Data
         public DateTime CreatedOn { get; set; }
 
         public string CreatorId { get; set; }
-        public User Creator { get; set; }
+        public virtual User Creator { get; set; }
 
-        public string ReposotoryId { get; set; }
-        public Repository Repository { get; set; }
+        public string RepositoryId { get; set; }
+        public virtual Repository Repository { get; set; }
     }
 }

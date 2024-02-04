@@ -37,9 +37,6 @@ namespace Git.Migrations
                     b.Property<string>("RepositoryId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ReposotoryId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorId");
