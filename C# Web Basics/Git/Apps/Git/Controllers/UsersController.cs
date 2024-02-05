@@ -22,10 +22,6 @@ namespace Git.Controllers
 
         public HttpResponse Login()
         {
-            if (this.IsUserSignedIn() == true)
-            {
-                return this.Error("Only logged out users can login.");
-            }
             return this.View();
         }
 
@@ -44,11 +40,6 @@ namespace Git.Controllers
 
         public HttpResponse Register()
         {
-            if (this.IsUserSignedIn() == true)
-            {
-                return this.Error("Only logged out users can register.");
-            }
-
             return this.View();
         }
 
@@ -97,11 +88,6 @@ namespace Git.Controllers
 
         public HttpResponse Logout()
         {
-            if (this.IsUserSignedIn() == false)
-            {
-                return this.Error("Only logged in users can logout.");
-            }
-
             this.SignOut();
             return this.Redirect("/");
         }
