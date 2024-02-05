@@ -15,7 +15,7 @@
 
         public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<Repository> Repository { get; set; }
+        public virtual DbSet<Repository> Repositories { get; set; }
 
         public virtual DbSet<Commit> Commits { get; set; }
 

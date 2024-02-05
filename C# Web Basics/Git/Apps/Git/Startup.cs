@@ -17,7 +17,8 @@
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.Add<IUsersService, UserService>();
+            serviceCollection.Add<IUserService, UserService>();
+            serviceCollection.Add<IRepositoryService, RepositoryService>();
         }
     }
 }

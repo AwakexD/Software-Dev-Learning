@@ -8,13 +8,13 @@ using Git.Data;
 
 namespace Git.Services
 {
-    public class UserService : IUsersService
+    public class UserService : IUserService
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext context;
 
-        public UserService(ApplicationDbContext db)
+        public UserService(ApplicationDbContext context)
         {
-            this.db = db;
+            this.context = context;
         }
 
         public string CreateUser(string username, string email, string password)
@@ -25,31 +25,31 @@ namespace Git.Services
                 Email = email,
                 Password = ComputeHash(password),
             };
-            this.db.Users.Add(user);
-            this.db.SaveChanges();
+            this.context.Users.Add(user);
+            this.context.SaveChanges();
 
             return user.Id;
         }
 
         public bool IsEmailAvailable(string email)
         {
-            return !this.db.Users.Any(u => u.Email == email);
+            return !this.context.Users.Any(u => u.Email == email);
         }
 
         public string GetUserId(string username, string password)
         {
-            return this.db.Users.FirstOrDefault(u => u.Username == username && u.Password == ComputeHash(password)).Id?
+            return this.context.Users.FirstOrDefault(u => u.Username == username && u.Password == ComputeHash(password)).Id?
                 .ToString();
         }
 
         public bool IsUsernameAvailable(string username)
         {
-            return !this.db.Users.Any(u => u.Username == username);
+            return !this.context.Users.Any(u => u.Username == username);
         }
 
         public bool DoesUserExist(string username, string password)
         {
-            return this.db.Users.Any(u => u.Username == username && u.Password == ComputeHash(password));
+            return this.context.Users.Any(u => u.Username == username && u.Password == ComputeHash(password));
         }
 
         public bool IsEmailValid(string email)

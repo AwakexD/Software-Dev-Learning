@@ -1,6 +1,6 @@
 ﻿namespace Git.Services
 {
-    public interface IUsersService
+    public interface IUserService
     {
         string CreateUser(string username, string email, string password);
         string GetUserId(string username, string password);

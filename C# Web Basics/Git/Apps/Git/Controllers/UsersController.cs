@@ -13,9 +13,9 @@ namespace Git.Controllers
 
     public class UsersController : Controller
     {
-        private readonly IUsersService usersService;
+        private readonly IUserService usersService;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUserService usersService)
         {
             this.usersService = usersService;
         }
