@@ -9,5 +9,7 @@ namespace Git.Services
         void CreateReposotory(CreateRepositoryModel repositoryModel);
         List<RepositoryViewModel> GetAllRepositories(string userId);
         bool IsRepositoryNameAvailable(string repositoryName, string userId);
+
+        CommitViewModel GetRepositoryNameAndId(string repositoryId);
     }
 }
