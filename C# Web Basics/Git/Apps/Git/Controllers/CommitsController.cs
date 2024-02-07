@@ -25,22 +25,38 @@ namespace Git.Controllers
             return this.View(allCommits);
         }
 
-        //ToDo : Fix Crate page
-        public HttpResponse Create(string repositoryId)
+        public HttpResponse Create(string id)
         {
-            var viewModel = this.repositoryService.GetRepositoryNameAndId(repositoryId);
-            return this.View(viewModel);
+           var viewModel = this.repositoryService.GetRepositoryNameAndId(id);
+           return this.View(viewModel);
         }
 
         [HttpPost]
         public HttpResponse Create(CreateCommitModel commitModel)
         {
-            return this.View();
+            if (string.IsNullOrEmpty(commitModel.Description) && commitModel.Description.Length < 5)
+            {
+                return this.View("Invalid commit description");
+            }
+
+            commitModel.CreatorId = this.GetUserId();
+            this.commitService.Create(commitModel);
+
+            return this.Redirect("/Repositories/All");
         }
 
-        public HttpResponse Delete(string repositoryId)
+        public HttpResponse Delete(string id)
         {
+            string userId = this.GetUserId();
 
+            if (commitService.DoesCommitExist(id, userId) == false)
+            {
+                return this.Error("Commit does not exists");
+            }
+
+            this.commitService.Delete(id);
+
+            return this.Redirect("/Commits/All");
         }
     }
 }

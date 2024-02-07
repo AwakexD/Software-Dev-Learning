@@ -6,9 +6,8 @@ namespace Git.Models
 {
     public class CreateCommitModel
     {
-        public string UserId { get; set; }
+        public string CreatorId { get; set; }
         public string RepositoryId { get; set; }
-        public string RepositoryName { get; set; }
         public string Description { get; set; }
 
     }

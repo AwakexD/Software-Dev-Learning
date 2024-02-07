@@ -11,5 +11,7 @@ namespace Git.Services
         List<CommitViewModel> GetUserAllCommits (string userId);
 
         void Delete(string commitId);
+
+        bool DoesCommitExist(string commitId, string userId);
     }
 }

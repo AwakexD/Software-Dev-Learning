@@ -10,6 +10,6 @@ namespace Git.Services
         List<RepositoryViewModel> GetAllRepositories(string userId);
         bool IsRepositoryNameAvailable(string repositoryName, string userId);
 
-        CommitViewModel GetRepositoryNameAndId(string repositoryId);
+        CreateCommitViewModel GetRepositoryNameAndId(string repositoryId);
     }
 }

@@ -21,24 +21,25 @@ namespace Git.Services
         {
             Commit newCommit = new Commit()
             {
+                CreatedOn = DateTime.Now.ToUniversalTime(),
                 RepositoryId = commitModel.RepositoryId,
-                CreatorId = commitModel.UserId,
+                CreatorId = commitModel.CreatorId,
                 Description = commitModel.Description,
-                CreatedOn = DateTime.Now,
             };
 
             this.context.Commits.Add(newCommit);
             this.context.SaveChanges();
         }
 
-        public List<CommitViewModel> GetUserAllCommits(string userId)
+        public List<CommitViewModel> GetUserAllCommits(string userId)   
         {
             return this.context.Commits.Where(c => c.CreatorId == userId)
                 .OrderByDescending(c => c.Repository.Name)
                 .Select(c => new CommitViewModel
                 {
+                    Id = c.Id,
                     Repository = c.Repository.Name,
-                    CreatedOn = DateTime.Now.ToString("MM/dd/yyyy h:mm tt"),
+                    CreatedOn = c.CreatedOn.ToString("MM/dd/yyyy h:mm tt"),
                     Description = c.Description,
                 }).ToList();
         }
@@ -48,6 +49,11 @@ namespace Git.Services
             var commit = this.context.Commits.FirstOrDefault(c => c.Id == commitId);
             this.context.Commits.Remove(commit);
             this.context.SaveChanges();
+        }
+
+        public bool DoesCommitExist(string commitId, string userId)
+        {
+            return this.context.Commits.Any(c => c.Id == commitId && c.CreatorId == userId);
         }
     }
 }

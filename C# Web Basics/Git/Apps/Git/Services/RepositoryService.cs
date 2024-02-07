@@ -52,12 +52,12 @@ namespace Git.Services
             return !this.context.Repositories.Any(x => x.Name == repositoryName && x.OwnerId == userId);
         }
 
-        public CommitViewModel GetRepositoryNameAndId(string repositoryId)
+        public CreateCommitViewModel GetRepositoryNameAndId(string repositoryId)
         {
-            return new CommitViewModel
+            return new CreateCommitViewModel
             {
                 Id = repositoryId,
-                Repository = this.context.Repositories.FirstOrDefault(x => x.Id == repositoryId).ToString(),
+                Name = this.context.Repositories.FirstOrDefault(x => x.Id == repositoryId).Name,
             };
         }
     }
