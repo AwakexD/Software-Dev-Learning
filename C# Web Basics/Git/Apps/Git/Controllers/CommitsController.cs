@@ -42,7 +42,7 @@ namespace Git.Controllers
             commitModel.CreatorId = this.GetUserId();
             this.commitService.Create(commitModel);
 
-            return this.Redirect("/Repositories/All");
+            return this.Redirect("/Commits/All");
         }
 
         public HttpResponse Delete(string id)
