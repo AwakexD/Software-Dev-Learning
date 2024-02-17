@@ -10,11 +10,13 @@ namespace MyFirstAspNetCoreApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext dbContext;
+        private readonly IConfiguration configuration;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext, IConfiguration configuration)
         {
             _logger = logger;
             this.dbContext = dbContext;
+            this.configuration = configuration;
         }
 
         public IActionResult Index()

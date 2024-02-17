@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@inject IConfiguration Configuration
 
 <div class="text-center">
     @if (User.Identity.IsAuthenticated)
@@ -12,6 +13,10 @@
     {
         <h1 class="display-4">Welcome, Anonymous</h1>
     }
+    
+    <h2>Server: @this.Configuration["Server"]</h2>
+    <h2>Email api: @this.Configuration["EmailSettings:ApiKey"]</h2>
+    <h2>Email port: @this.Configuration["EmailSettings:Port"]</h2>
     
     <p>@Model.CurrentDate</p>
     <p>@Model.UsersCount</p>
