@@ -1,17 +1,20 @@
-﻿using MoiteRecepti.Services.Data;
-using MoiteRecepti.Web.ViewModels.Recipes;
-
-namespace MoiteRecepti.Web.Controllers
+﻿namespace MoiteRecepti.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
+    using MoiteRecepti.Services.Data;
+    using MoiteRecepti.Web.ViewModels.Recipes;
 
     public class RecipesController : Controller
     {
         private readonly ICategoriesService categoryService;
+        private readonly IRecipesService recipesService;
 
-        public RecipesController(ICategoriesService categoryService)
+        public RecipesController(ICategoriesService categoryService, IRecipesService recipesService)
         {
             this.categoryService = categoryService;
+            this.recipesService = recipesService;
         }
 
         public IActionResult Create()
@@ -22,7 +25,7 @@ namespace MoiteRecepti.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cerate(CreateRecipeInputModel input)
+        public async Task<IActionResult> Create(CreateRecipeInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -30,8 +33,7 @@ namespace MoiteRecepti.Web.Controllers
                 return this.View(input);
             }
 
-            // Todo: Create recipe using service
-            // Todo: Redirect to recipe page
+            await this.recipesService.CreateAsync(input);
 
             return this.Redirect("/");
         }

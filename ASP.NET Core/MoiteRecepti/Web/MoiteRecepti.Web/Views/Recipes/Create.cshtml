@@ -4,7 +4,6 @@
     var categoryItem = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-
 <h1>@this.ViewData["Title"]</h1>
 
 <form method="post" class="col-md-6 offset-md-3">
@@ -20,9 +19,9 @@
         <span asp-validation-for="Instructions" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="PreperationTime"></label>
-        <input asp-for="PreperationTime" class="form-control"/>
-        <span asp-validation-for="PreperationTime" class="text-danger"></span>
+        <label asp-for="PreparationTime"></label>
+        <input asp-for="PreparationTime" class="form-control"/>
+        <span asp-validation-for="PreparationTime" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="CookingTime"></label>
@@ -39,5 +38,20 @@
         <select asp-for="CategoryId" class="form-control" asp-items="categoryItem"></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
+    <div class="from-control" id="IngredientsContainer">
+        <label asp-for="Ingredients"></label>
+        <a class="btn btn-success" onclick="AddMoreIngredients()">+</a>
+    </div>
     <input type="submit" class="btn btn-primary"/>
 </form>
+
+@section Scripts {
+    <script>
+        var ingredientIndex = 0;
+        function AddMoreIngredients() {
+            $("#IngredientsContainer").
+                append("<div class='form-control'>Name: <input type='text' name='Ingredients[" + ingredientIndex + "].IngredientName' /> Quantity: <input type='text' name='Ingredients[" + ingredientIndex + "].Quantity' /></div>");
+            ingredientIndex++;
+        }
+    </script>
+}
